@@ -10,21 +10,44 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AngularFireModule } from "@angular/fire";
+import {
+  AngularFirestoreModule,
+  FirestoreSettingsToken
+} from "@angular/fire/firestore";
+import { MatCardModule } from "@angular/material/card";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { environment } from "../environments/environment";
+import { LoginComponent } from "./components/login/login.component";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    LoginComponent,
+    ProfileComponent
+  ],
   imports: [
     BrowserModule,
-    BrowserAnimationModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatCardModule,
     AppRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

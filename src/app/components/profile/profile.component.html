@@ -1,0 +1,9 @@
+<mat-card>
+  <ng-container *ngIf="user then userInfo"></ng-container>
+</mat-card>
+
+<ng-template #userInfo>
+  <h1>{{user.displayName}}</h1>
+  <h2>{{user.email}}</h2>
+  <img src={{user.photoURL}} alt="profile picture" class="profilePicture">
+</ng-template>

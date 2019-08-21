@@ -7,6 +7,7 @@ import {
   redirectUnauthorizedTo,
   canActivate
 } from "@angular/fire/auth-guard";
+import { TodoComponent } from "./components/todo/todo.component";
 
 const unauthorizedRed = redirectUnauthorizedTo(["/login"]);
 
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: "profile",
     component: ProfileComponent,
+    ...canActivate(unauthorizedRed)
+  },
+  {
+    path: "todos",
+    component: TodoComponent,
     ...canActivate(unauthorizedRed)
   }
 ];

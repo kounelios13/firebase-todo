@@ -30,10 +30,10 @@ export class TodoComponent implements OnInit {
   }
 
   async addTodo($event) {
-    this.todo.title = "";
     $event.preventDefault();
     try {
       await this.todoService.addTodo(this.todo);
+      this.todo.title = "";
       this.matSnack.open("Added todo", null, { duration: 4000 });
     } catch (e) {
       this.matSnack.open(e.message, null, { duration: 4000 });

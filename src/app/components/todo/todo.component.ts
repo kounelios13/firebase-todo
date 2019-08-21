@@ -1,17 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { TodoService } from "src/app/services/todo.service";
 import { Todo } from "src/app/interfaces/todo";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-todo",
   templateUrl: "./todo.component.html",
   styleUrls: ["./todo.component.scss"]
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent implements OnInit, OnDestroy {
   todos: Todo[];
   loading = true;
   todo: Todo = { done: false, title: "", userId: "" };
+  private subscription: Subscription;
   constructor(
     private todoService: TodoService,
     private matSnack: MatSnackBar
@@ -20,7 +22,8 @@ export class TodoComponent implements OnInit {
   async ngOnInit() {
     console.log("init");
     const observable = await this.todoService.getUserTodos();
-    observable.subscribe(value => {
+
+    this.subscription = observable.subscribe(value => {
       console.log(value);
       if (value) {
         this.todos = value;
@@ -29,6 +32,9 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  async ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   async addTodo($event) {
     $event.preventDefault();
     try {

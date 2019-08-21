@@ -30,10 +30,10 @@ export class TodoComponent implements OnInit {
   }
 
   async addTodo($event) {
+    this.todo.title = "";
     $event.preventDefault();
     try {
-      const response = await this.todoService.addTodo(this.todo);
-      console.log({ response });
+      await this.todoService.addTodo(this.todo);
       this.matSnack.open("Added todo", null, { duration: 4000 });
     } catch (e) {
       this.matSnack.open(e.message, null, { duration: 4000 });
@@ -44,6 +44,16 @@ export class TodoComponent implements OnInit {
     try {
       await this.todoService.deleteTodo(todo);
       this.matSnack.open("deleted todo", null, { duration: 4000 });
+    } catch (e) {
+      this.matSnack.open(e.message, null, { duration: 4000 });
+    }
+  }
+
+  async toggleTodo($event, todo: Todo) {
+    //todo.done = !todo.done;
+    try {
+      await this.todoService.updateTodo(todo);
+      this.matSnack.open("toggled todo", null, { duration: 4000 });
     } catch (e) {
       this.matSnack.open(e.message, null, { duration: 4000 });
     }

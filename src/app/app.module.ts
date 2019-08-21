@@ -27,6 +27,7 @@ import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { TodoComponent } from "./components/todo/todo.component";
 import { FormsModule } from "@angular/forms";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,8 @@ import { FormsModule } from "@angular/forms";
     MatFormFieldModule,
     MatInputModule,
     MatFormFieldModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSlideToggleModule
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]

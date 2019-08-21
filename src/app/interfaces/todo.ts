@@ -3,5 +3,4 @@ export interface Todo {
   done: boolean;
   userId: string;
   id?: string;
-  uid?: string;
 }

@@ -16,7 +16,7 @@
     <mat-card-title>Todos</mat-card-title>
     <div *ngFor="let t of todos">
       <h3>{{t.title}}</h3>
-      <h5>{{t.done}}</h5>
+      <mat-slide-toggle [(ngModel)]="t.done" (change)="toggleTodo($event,t)"></mat-slide-toggle>
       <button mat-raised-button (click)="deleteTodo($event,t)">Delete todo</button>
     </div>
   </mat-card>

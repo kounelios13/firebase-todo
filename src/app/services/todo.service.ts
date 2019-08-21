@@ -60,6 +60,11 @@ export class TodoService {
     return this.todosCollection.doc(id).delete();
     // this.todosCollection.doc('collections').ref('we','')
   }
+
+  updateTodo(todo: Todo) {
+    const { id } = todo;
+    return this.todosCollection.doc(id).set(todo);
+  }
   getUserTodos() {
     return this.todos;
   }

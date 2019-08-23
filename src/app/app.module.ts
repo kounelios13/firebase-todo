@@ -28,6 +28,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { TodoComponent } from "./components/todo/todo.component";
 import { FormsModule } from "@angular/forms";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatInputModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FlexLayoutModule
   ],
   providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]

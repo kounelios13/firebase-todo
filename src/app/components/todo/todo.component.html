@@ -14,10 +14,14 @@
 <ng-template #mainContent>
   <mat-card>
     <mat-card-title>Todos</mat-card-title>
-    <div *ngFor="let t of todos">
-      <h3>{{t.title}}</h3>
-      <mat-slide-toggle [(ngModel)]="t.done" (change)="toggleTodo($event,t)"></mat-slide-toggle>
-      <button color="warn" style="width:100%" mat-raised-button (click)="deleteTodo($event,t)">Delete todo</button>
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start" fxLayout.lt-sm="column">
+      <div *ngFor="let t of todos" fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%">
+        <h3>{{t.title}}</h3>
+        Done: <mat-slide-toggle [(ngModel)]="t.done" (change)="toggleTodo($event,t)"></mat-slide-toggle>
+        <button color="warn" style="width:100%" mat-raised-button (click)="deleteTodo($event,t)">Delete todo</button>
+      </div>
     </div>
+
   </mat-card>
 </ng-template>

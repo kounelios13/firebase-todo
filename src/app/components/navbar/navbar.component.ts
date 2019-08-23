@@ -14,10 +14,7 @@ export class NavbarComponent {
   user: User;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      share()
-    );
+    .pipe(map(result => result.matches));
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -25,6 +22,7 @@ export class NavbarComponent {
     private router: Router
   ) {
     this.authService.user.subscribe(user => (this.user = user));
+    this.breakpointObserver;
   }
   logout() {
     this.authService.auth
